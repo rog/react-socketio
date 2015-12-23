@@ -1,0 +1,19 @@
+{
+  "name": "react-socketio",
+  "version": "1.0.0",
+  "description": "Example of using connecting Socket.io with a React app",
+  "main": "server.js",
+  "scripts": {
+    "test": "exit 1"
+  },
+  "author": "Rogelio Alberto",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.3",
+    "moment": "^2.10.6"
+  },
+  "devDependencies": {
+    "debug": "^2.2.0"
+  }
+}

@@ -11,9 +11,14 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "express": "^4.13.3",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "react": "^0.14.3"
   },
   "devDependencies": {
-    "debug": "^2.2.0"
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "babel-preset-react": "^6.3.13",
+    "debug": "^2.2.0",
+    "webpack": "^1.12.9"
   }
 }

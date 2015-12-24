@@ -1,11 +1,16 @@
-'use strict';
-let express = require('express');
-let moment = require('moment');
+const express = require('express');
+const moment = require('moment');
+const debug = require('debug');
 
-let app = express();
+const app = express();
+const server = app.listen(3000);
+const io = require('socket.io').listen(server);
 
-app.use( express.static('./public') );
-app.use( express.static('./node_modules/bootstrap/dist') );
+app.use(express.static('./public'));
+app.use(express.static('./node_modules/bootstrap/dist'));
 
-app.listen( 3000 );
-console.log('Server is running on port 3000 at %s', moment().format() );
+io.sockets.on('connection', function onConnect(socket) {
+  debug('Connected: %s', socket.id);
+});
+
+debug('Server is running on port 3000 at %s', moment().format());

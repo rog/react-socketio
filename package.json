@@ -1,7 +1,7 @@
 {
   "name": "react-socketio",
   "version": "1.0.0",
-  "description": "Example of using connecting Socket.io with a React app",
+  "description": "Example of connecting Socket.io with a React app",
   "main": "server.js",
   "scripts": {
     "test": "exit 1",

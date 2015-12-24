@@ -1,16 +1,16 @@
 {
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
   },
   "globals": {
-    "React": true
+    "React": true,
   },
   "ecmaFeatures": {
-    "jsx": true
+    "jsx": true,
   },
   "plugins": [
     "react"
   ],
-  "extends": "airbnb"
+  "extends": "airbnb",
 }

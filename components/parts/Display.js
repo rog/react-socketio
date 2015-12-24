@@ -11,7 +11,8 @@ class Display extends React.Component {
 
 Display.propTypes = {
   if: React.PropTypes.bool,
-  children: React.PropTypes.element,
+  children: React.PropTypes.node,
 };
+
 
 module.exports = Display;

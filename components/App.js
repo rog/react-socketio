@@ -30,6 +30,10 @@ class App extends React.Component {
     this.socket.emit(eventName, payload);
   }
   connect() {
+    const member = (sessionStorage.member) ? JSON.parse(sessionStorage.member) : null;
+    if (member) {
+      this.emit('join', member);
+    }
     this.setState({ status: 'connected' });
   }
   disconnect() {
@@ -39,6 +43,7 @@ class App extends React.Component {
     this.setState({ title: serverState.title });
   }
   joined(member) {
+    sessionStorage.member = JSON.stringify(member);
     this.setState({ member });
   }
   updateAudience(audience) {

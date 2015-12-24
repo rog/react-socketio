@@ -1,6 +1,6 @@
 const express = require('express');
 const moment = require('moment');
-const debug = require('debug');
+const debug = require('debug')('server');
 
 const app = express();
 const server = app.listen(3000);

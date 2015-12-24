@@ -1,5 +1,6 @@
 const React = require('react');
 const io = require('socket.io-client');
+const Header = require('./parts/Header');
 
 const App = React.createClass({
   componentWillMount() {
@@ -10,7 +11,11 @@ const App = React.createClass({
     alert('Connected ' + this.socket.id);
   },
   render() {
-    return (<h1>Hello world from React</h1>);
+    return (
+      <div>
+        <Header title="New Header" />
+      </div>
+    );
   },
 });
 

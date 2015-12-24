@@ -7,6 +7,7 @@ const server = app.listen(3000);
 const io = require('socket.io').listen(server);
 
 const connections = [];
+const audience = [];
 const title = 'Untitled Presentation';
 
 app.use(express.static('./public'));
@@ -24,6 +25,8 @@ io.sockets.on('connection', function onConnect(socket) {
       name: payload.name,
     };
     this.emit('joined', newMember);
+    audience.push(newMember);
+    io.sockets.emit('audience', audience);
     debug(`Audience Joined: ${payload.name}`);
   });
   socket.emit('welcome', {

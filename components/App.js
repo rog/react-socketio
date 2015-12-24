@@ -9,11 +9,13 @@ class App extends React.Component {
       status: 'disconnected',
       title: '',
       member: {},
+      audience: [],
     };
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
     this.welcome = this.welcome.bind(this);
     this.joined = this.joined.bind(this);
+    this.updateAudience = this.updateAudience.bind(this);
     this.emit = this.emit.bind(this);
   }
   componentWillMount() {
@@ -22,6 +24,7 @@ class App extends React.Component {
     this.socket.on('disconnect', this.disconnect);
     this.socket.on('welcome', this.welcome);
     this.socket.on('joined', this.joined);
+    this.socket.on('audience', this.updateAudience);
   }
   emit(eventName, payload) {
     this.socket.emit(eventName, payload);
@@ -37,6 +40,9 @@ class App extends React.Component {
   }
   joined(member) {
     this.setState({ member });
+  }
+  updateAudience(audience) {
+    this.setState({ audience });
   }
   render() {
     return (

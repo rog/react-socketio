@@ -12,12 +12,16 @@ class App extends React.Component {
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
     this.welcome = this.welcome.bind(this);
+    this.emit = this.emit.bind(this);
   }
   componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
     this.socket.on('welcome', this.welcome);
+  }
+  emit(eventName, payload) {
+    this.socket.emit(eventName, payload);
   }
   connect() {
     this.setState({ status: 'connected' });
@@ -32,7 +36,7 @@ class App extends React.Component {
     return (
       <div>
         <Header title={this.state.title} status={this.state.status} />
-        {React.cloneElement(this.props.children, { state: this.state })}
+        {React.cloneElement(this.props.children, { state: this.state, emit: this.emit })}
       </div>
     );
   }

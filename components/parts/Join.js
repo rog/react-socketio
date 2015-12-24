@@ -9,7 +9,7 @@ class Join extends React.Component {
   }
   join() {
     const memberName = ReactDOM.findDOMNode(this.refs.name).value;
-    alert(`TODO: Join member ${memberName}`);
+    this.props.emit('join', { name: memberName });
   }
   render() {
     return (
@@ -24,6 +24,7 @@ class Join extends React.Component {
 
 Join.propTypes = {
   if: React.PropTypes.bool,
+  emit: React.PropTypes.func,
 };
 
 module.exports = Join;

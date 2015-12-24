@@ -18,6 +18,9 @@ io.sockets.on('connection', function onConnect(socket) {
     socket.disconnect();
     debug(`Disconnected: ${connections.length} sockets`);
   });
+  socket.on('join', function joinEmit(payload) {
+    debug(`Audience Joined: ${payload.name}`);
+  });
   socket.emit('welcome', {
     title,
   });

@@ -11,7 +11,7 @@ class Audience extends React.Component {
       <div>
         <Display if={this.props.state.status === 'connected'}>
           <h1>Join the session</h1>
-          <Join />
+          <Join emit={this.props.emit}/>
         </Display>
       </div>
     );
@@ -20,6 +20,7 @@ class Audience extends React.Component {
 
 Audience.propTypes = {
   state: React.PropTypes.object,
+  emit: React.PropTypes.func,
 };
 
 export default Audience;

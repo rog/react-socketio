@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 const App = require('./components/App');
 
-React.render(<App />, document.getElementById('react-container'));
+ReactDOM.render(<App />, document.getElementById('react-container'));

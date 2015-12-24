@@ -6,9 +6,9 @@ module.exports = {
   module: {
     loaders: [{
       exclude: /(node_modules|server.js)/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
-        presets: ['react'],
+        presets: ['es2015', 'react'],
       },
     }],
   },

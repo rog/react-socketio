@@ -1,15 +1,9 @@
-const React = require('react');
+import React from 'react';
 
-const Header = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string.isRequired,
-    status: React.PropTypes.string.isRequired,
-  },
-  getDefaultProps() {
-    return {
-      status: 'disconected',
-    };
-  },
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <header className="row">
@@ -21,7 +15,15 @@ const Header = React.createClass({
         </div>
       </header>
     );
-  },
-});
+  }
+}
+
+Header.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  status: React.PropTypes.string.isRequired,
+};
+Header.defaultProps = {
+  status: 'disconnected',
+};
 
 module.exports = Header;

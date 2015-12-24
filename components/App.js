@@ -8,13 +8,13 @@ class App extends React.Component {
     this.state = {
       status: 'disconnected',
       title: '',
-      speaker: {},
+      speaker: '',
       member: {},
       audience: [],
     };
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
-    this.welcome = this.welcome.bind(this);
+    this.updateState = this.updateState.bind(this);
     this.joined = this.joined.bind(this);
     this.updateAudience = this.updateAudience.bind(this);
     this.emit = this.emit.bind(this);
@@ -23,7 +23,8 @@ class App extends React.Component {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
-    this.socket.on('welcome', this.welcome);
+    this.socket.on('start', this.updateState);
+    this.socket.on('welcome', this.updateState);
     this.socket.on('joined', this.joined);
     this.socket.on('audience', this.updateAudience);
   }
@@ -40,8 +41,8 @@ class App extends React.Component {
   disconnect() {
     this.setState({ status: 'disconnected' });
   }
-  welcome(serverState) {
-    this.setState({ title: serverState.title });
+  updateState(serverState) {
+    this.setState(serverState);
   }
   joined(member) {
     sessionStorage.member = JSON.stringify(member);
@@ -53,7 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header title={this.state.title} status={this.state.status} />
+        <Header {...this.state} />
         {React.cloneElement(this.props.children, { state: this.state, emit: this.emit })}
       </div>
     );

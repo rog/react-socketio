@@ -1,3 +1,5 @@
+/* eslint strict: [0, "global"] */
+'use strict';
 const express = require('express');
 const moment = require('moment');
 const _ = require('lodash');
@@ -10,6 +12,7 @@ const io = require('socket.io').listen(server);
 const connections = [];
 const audience = [];
 const speaker = {};
+
 let title = 'Untitled Presentation';
 
 app.use(express.static('./public'));
@@ -42,11 +45,15 @@ io.sockets.on('connection', function onConnect(socket) {
     speaker.name = payload.name;
     speaker.id = this.id;
     speaker.type = 'speaker';
+    title = payload.title;
     this.emit('joined', speaker);
+    io.sockets.emit('start', { title, speaker: speaker.name });
     debug(`Presentation started: ${title} by ${speaker.name}`);
   });
   socket.emit('welcome', {
     title,
+    audience,
+    speaker: speaker.name,
   });
   connections.push(socket);
   debug(`Connected: ${connections.length} sockets`);

@@ -9,7 +9,8 @@ const io = require('socket.io').listen(server);
 
 const connections = [];
 const audience = [];
-const title = 'Untitled Presentation';
+const speaker = {};
+let title = 'Untitled Presentation';
 
 app.use(express.static('./public'));
 app.use(express.static('./node_modules/bootstrap/dist'));
@@ -30,11 +31,19 @@ io.sockets.on('connection', function onConnect(socket) {
     const newMember = {
       id: this.id,
       name: payload.name,
+      type: 'member',
     };
     this.emit('joined', newMember);
     audience.push(newMember);
     io.sockets.emit('audience', audience);
     debug(`Audience Joined: ${payload.name}`);
+  });
+  socket.on('start', function startSpeaker(payload) {
+    speaker.name = payload.name;
+    speaker.id = this.id;
+    speaker.type = 'speaker';
+    this.emit('joined', speaker);
+    debug(`Presentation started: ${title} by ${speaker.name}`);
   });
   socket.emit('welcome', {
     title,

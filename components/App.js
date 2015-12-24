@@ -8,6 +8,7 @@ class App extends React.Component {
     this.state = {
       status: 'disconnected',
       title: '',
+      speaker: {},
       member: {},
       audience: [],
     };

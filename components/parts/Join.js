@@ -1,6 +1,7 @@
 /* eslint no-script-url: 0*/
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 
 class Join extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Join extends React.Component {
         <label>Full Name</label>
         <input ref="name" className="form-control" placeholder="Enter your full name" required />
         <button className="btn btn-primary">Join</button>
+        <Link to="/speaker">Join as Speaker</Link>
       </form>
     );
   }

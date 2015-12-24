@@ -23,7 +23,6 @@ class Join extends React.Component {
 }
 
 Join.propTypes = {
-  if: React.PropTypes.bool,
   emit: React.PropTypes.func,
 };
 

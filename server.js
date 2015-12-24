@@ -19,6 +19,11 @@ io.sockets.on('connection', function onConnect(socket) {
     debug(`Disconnected: ${connections.length} sockets`);
   });
   socket.on('join', function joinEmit(payload) {
+    const newMember = {
+      id: this.id,
+      name: payload.name,
+    };
+    this.emit('joined', newMember);
     debug(`Audience Joined: ${payload.name}`);
   });
   socket.emit('welcome', {

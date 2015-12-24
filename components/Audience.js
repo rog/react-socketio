@@ -5,8 +5,12 @@ class Audience extends React.Component {
     super(props);
   }
   render() {
-    return (<div><h2>Audience</h2></div>);
+    return (<h2>Audience: {this.props.state.title}</h2>);
   }
 }
+
+Audience.propTypes = {
+  state: React.PropTypes.object,
+};
 
 export default Audience;

@@ -2,8 +2,12 @@ import React from 'react';
 
 class Board extends React.Component {
   render() {
-    return (<div><h1>Board</h1></div>);
+    return (<h2>Board: {this.props.state.status}</h2>);
   }
 }
+
+Board.propTypes = {
+  state: React.PropTypes.object,
+};
 
 export default Board;

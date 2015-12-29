@@ -2,6 +2,7 @@ import React from 'react';
 import Display from './parts/Display';
 import JoinSpeaker from './parts/JoinSpeaker';
 import Attendance from './parts/Attendance';
+import Questions from './parts/Questions';
 
 class Speaker extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Speaker extends React.Component {
 
           <Display if={this.props.state.member.name !== undefined && this.props.state.member.type === 'speaker'}>
             <h2>Welcome {this.props.state.member.name} </h2>
-            <p>Questions.</p>
+            <Questions questions={this.props.state.questions} />
             <Attendance audience={this.props.state.audience} />
           </Display>
 

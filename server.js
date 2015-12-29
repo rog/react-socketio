@@ -11,6 +11,7 @@ const io = require('socket.io').listen(server);
 
 const connections = [];
 const audience = [];
+const questions = require('./api/questions');
 
 let speaker = {};
 let title = 'Untitled Presentation';
@@ -59,6 +60,7 @@ io.sockets.on('connection', function onConnect(socket) {
     title,
     audience,
     speaker: speaker.name,
+    questions,
   });
   connections.push(socket);
   debug(`Connected: ${connections.length} sockets`);

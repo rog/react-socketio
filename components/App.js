@@ -11,6 +11,7 @@ class App extends React.Component {
       speaker: '',
       member: {},
       audience: [],
+      questions: [],
     };
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);

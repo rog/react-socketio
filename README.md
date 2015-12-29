@@ -4,19 +4,33 @@ Experiment of using Socket.io with Koa and React.
 
 To install the dependencies of the project:
 
-`npm install`
+```
+npm install
+```
 
 To compile the code and run the server:
 
-`npm start`
+```
+npm start
+```
 
 
 ## Router
-`127.0.0.1:3000/` Add an Audience member to answer questions.
+- `127.0.0.1:3000/`
 
-`127.0.0.1:3000/speaker` Add a Presentation name and a Speaker member.
+   Add an Audience member to answer questions.
 
-`127.0.0.1:3000/board` You can see a graph of the answers by the audience.
+- `127.0.0.1:3000/speaker`
+
+  Add a Presentation name and a Speaker member.
+
+- `127.0.0.1:3000/board`
+
+  Display a bar graph of the answers by the audience.
+
+- `127.0.0.1:3000/anyother`
+
+  Default 404 page.
 
 ## License
 

@@ -14,11 +14,11 @@ module.exports = [
     'd': 'Ringo',
   },
   {
-    'q': 'Which Search Phrase Did Google Temporarily Ban Under The Belief They Were Experiencing A Cyber Attack?',
-    'a': 'Michael Jackson',
-    'b': 'Ebola Outbreak',
-    'c': 'Malaysian Airlines',
-    'd': 'Ashley Madison',
+    'q': 'Which Color is Your Lightsaber?',
+    'a': 'Blue',
+    'b': 'Red',
+    'c': 'Green',
+    'd': 'Purple',
   },
   {
     'q': 'Which Starter Pokémon Should You Choose',
@@ -30,8 +30,5 @@ module.exports = [
   {
     'q': 'Select The Only Band That Matters',
     'a': 'The Clash',
-    'b': 'The Clash',
-    'c': 'The Clash',
-    'd': 'The Clash',
   },
 ];

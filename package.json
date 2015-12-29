@@ -6,14 +6,14 @@
   "scripts": {
     "test": "exit 1",
     "prestart": "webpack",
-    "start": "DEBUG=app:* nodemon server.js --exec babel-node"
+    "start": "DEBUG=app:* nodemon app-server.js --exec babel-node"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:rogr/react-socketio.git"
   },
   "author": "Rogelio Alberto",
-  "license": "MIT",
+  "license": "Beerware",
   "dependencies": {
     "koa": "^1.1.2",
     "koa-socket": "^3.2.0",

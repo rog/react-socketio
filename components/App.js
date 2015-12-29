@@ -74,7 +74,10 @@ class App extends React.Component {
   }
   ask(question) {
     sessionStorage.removeItem('answer');
-    this.setState({ currentQuestion: question });
+    this.setState({
+      currentQuestion: question,
+      results: { a: 0, b: 0, c: 0, d: 0 },
+    });
   }
   updateResults(results) {
     this.setState({ results });

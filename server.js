@@ -13,7 +13,7 @@ const connections = [];
 const audience = [];
 const questions = require('./api/questions');
 
-let currentQuestion = false;
+let currentQuestion = {};
 let speaker = {};
 let title = 'Untitled Presentation';
 

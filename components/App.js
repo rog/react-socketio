@@ -12,7 +12,7 @@ class App extends React.Component {
       member: {},
       audience: [],
       questions: [],
-      currentQuestion: false,
+      currentQuestion: {},
     };
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);

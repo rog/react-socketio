@@ -11,8 +11,8 @@ const io = require('socket.io').listen(server);
 
 const connections = [];
 const audience = [];
-const speaker = {};
 
+let speaker = {};
 let title = 'Untitled Presentation';
 
 app.use(express.static('./public'));
@@ -25,6 +25,11 @@ io.sockets.on('connection', function onConnect(socket) {
       audience.splice(audience.indexOf(member), 1);
       io.sockets.emit('audience', audience);
       debug(`Left: ${member.name} (Total: ${audience.length})`);
+    } else if (this.id === speaker.id) {
+      debug(`${speaker.name} has left. ${title} is over `);
+      speaker = {};
+      title = 'Untitled Presentation';
+      io.sockets.emit('end', { title, speaker: '' });
     }
     connections.splice(connections.indexOf(socket), 1);
     socket.disconnect();
@@ -34,7 +39,7 @@ io.sockets.on('connection', function onConnect(socket) {
     const newMember = {
       id: this.id,
       name: payload.name,
-      type: 'member',
+      type: 'audience',
     };
     this.emit('joined', newMember);
     audience.push(newMember);

@@ -28,4 +28,4 @@ Header.defaultProps = {
   status: 'disconnected',
 };
 
-module.exports = Header;
+export default Header;

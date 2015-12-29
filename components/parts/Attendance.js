@@ -37,4 +37,4 @@ Attendance.propTypes = {
   emit: React.PropTypes.func,
 };
 
-module.exports = Attendance;
+export default Attendance;

@@ -31,4 +31,4 @@ Questions.propTypes = {
   emit: React.PropTypes.func,
 };
 
-module.exports = Questions;
+export default Questions;

@@ -65,4 +65,4 @@ Ask.propTypes = {
   emit: React.PropTypes.func,
 };
 
-module.exports = Ask;
+export default Ask;

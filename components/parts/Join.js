@@ -29,4 +29,4 @@ Join.propTypes = {
   emit: React.PropTypes.func,
 };
 
-module.exports = Join;
+export default Join;

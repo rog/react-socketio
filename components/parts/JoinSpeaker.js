@@ -29,4 +29,4 @@ JoinSpeaker.propTypes = {
   emit: React.PropTypes.func,
 };
 
-module.exports = JoinSpeaker;
+export default JoinSpeaker;

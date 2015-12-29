@@ -15,4 +15,4 @@ Display.propTypes = {
 };
 
 
-module.exports = Display;
+export default Display;

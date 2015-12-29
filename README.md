@@ -1,6 +1,6 @@
 React-Socketio
 =====
-Experiment of using Socket.io with Koa and React.
+Experiment of using [Socket.io](https://github.com/socketio/socket.io) with [Koa](https://github.com/koajs/koa) and [React](https://github.com/facebook/react).
 
 To install the dependencies of the project:
 

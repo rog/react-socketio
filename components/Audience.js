@@ -12,9 +12,17 @@ class Audience extends React.Component {
         <Display if={this.props.state.status === 'connected'}>
 
           <Display if={this.props.state.member.name !== undefined}>
-            <h2>Welcome {this.props.state.member.name} </h2>
-            <p>{this.props.state.audience.length} audience members connected</p>
-            <p>Questions will appear here.</p>
+
+            <Display if={this.props.state.currentQuestion === false}>
+              <h2>Welcome {this.props.state.member.name} </h2>
+              <p>{this.props.state.audience.length} audience members connected</p>
+              <p>Questions will appear here.</p>
+            </Display>
+
+            <Display if={this.props.state.currentQuestion !== undefined}>
+              <h2>{this.props.state.currentQuestion.q}</h2>
+            </Display>
+
           </Display>
 
           <Display if={this.props.state.member.name === undefined}>

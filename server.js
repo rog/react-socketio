@@ -13,6 +13,7 @@ const connections = [];
 const audience = [];
 const questions = require('./api/questions');
 
+let currentQuestion = false;
 let speaker = {};
 let title = 'Untitled Presentation';
 
@@ -56,11 +57,17 @@ io.sockets.on('connection', function onConnect(socket) {
     io.sockets.emit('start', { title, speaker: speaker.name });
     debug(`Presentation started: ${title} by ${speaker.name}`);
   });
+  socket.on('ask', function askQuestion(question) {
+    currentQuestion = question;
+    io.sockets.emit('ask', currentQuestion);
+    debug(`Question Asked: ${question.q}`);
+  });
   socket.emit('welcome', {
     title,
     audience,
     speaker: speaker.name,
     questions,
+    currentQuestion,
   });
   connections.push(socket);
   debug(`Connected: ${connections.length} sockets`);

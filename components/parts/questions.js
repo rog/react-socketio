@@ -3,11 +3,16 @@ import React from 'react';
 class Questions extends React.Component {
   constructor(props) {
     super(props);
+    this.ask = this.ask.bind(this);
+    this.addQuestion = this.addQuestion.bind(this);
+  }
+  ask(question) {
+    this.props.emit('ask', question);
   }
   addQuestion(question, i) {
     return (
       <div key={i} className="col-xs-12 col-sm-6 col-md-3">
-        <span>{question.q}</span>
+        <span onClick={this.ask.bind(null, question)}>{question.q}</span>
       </div>
     );
   }

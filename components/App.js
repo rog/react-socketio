@@ -12,6 +12,7 @@ class App extends React.Component {
       member: {},
       audience: [],
       questions: [],
+      currentQuestion: false,
     };
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
@@ -20,6 +21,7 @@ class App extends React.Component {
     this.start = this.start.bind(this);
     this.updateAudience = this.updateAudience.bind(this);
     this.emit = this.emit.bind(this);
+    this.ask = this.ask.bind(this);
   }
   componentWillMount() {
     this.socket = io('http://localhost:3000');
@@ -30,6 +32,7 @@ class App extends React.Component {
     this.socket.on('end', this.updateState);
     this.socket.on('joined', this.joined);
     this.socket.on('audience', this.updateAudience);
+    this.socket.on('ask', this.ask);
   }
   emit(eventName, payload) {
     this.socket.emit(eventName, payload);
@@ -65,6 +68,9 @@ class App extends React.Component {
       sessionStorage.title = presentation.title;
     }
     this.setState(presentation);
+  }
+  ask(question) {
+    this.setState({ currentQuestion: question });
   }
   render() {
     return (

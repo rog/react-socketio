@@ -15,7 +15,7 @@ class Speaker extends React.Component {
 
           <Display if={this.props.state.member.name !== undefined && this.props.state.member.type === 'speaker'}>
             <h2>Welcome {this.props.state.member.name} </h2>
-            <Questions questions={this.props.state.questions} />
+            <Questions questions={this.props.state.questions} emit={this.props.emit}/>
             <Attendance audience={this.props.state.audience} />
           </Display>
 

@@ -21,7 +21,7 @@ class Audience extends React.Component {
             </Display>
 
             <Display if={this.props.state.currentQuestion.q !== undefined}>
-              <Ask question={this.props.state.currentQuestion} />
+              <Ask question={this.props.state.currentQuestion} emit={this.props.emit} />
             </Display>
 
           </Display>

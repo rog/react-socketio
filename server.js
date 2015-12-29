@@ -15,6 +15,12 @@ const questions = require('./api/questions');
 
 let currentQuestion = {};
 let speaker = {};
+let results = {
+  a: 0,
+  b: 0,
+  c: 0,
+  d: 0,
+};
 let title = 'Untitled Presentation';
 
 app.use(express.static('./public'));
@@ -59,8 +65,14 @@ io.sockets.on('connection', function onConnect(socket) {
   });
   socket.on('ask', function askQuestion(question) {
     currentQuestion = question;
+    results = { a: 0, b: 0, c: 0, d: 0 };
     io.sockets.emit('ask', currentQuestion);
     debug(`Question Asked: ${question.q}`);
+  });
+  socket.on('answer', function answerQuestion(payload) {
+    results[payload.choice]++;
+    debug(`Answer: ${payload.choice}`);
+    debug(results);
   });
   socket.emit('welcome', {
     title,

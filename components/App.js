@@ -70,6 +70,7 @@ class App extends React.Component {
     this.setState(presentation);
   }
   ask(question) {
+    sessionStorage.answer = '';
     this.setState({ currentQuestion: question });
   }
   render() {

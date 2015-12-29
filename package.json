@@ -6,27 +6,34 @@
   "scripts": {
     "test": "exit 1",
     "prestart": "webpack",
-    "start": "DEBUG=server node server.js"
+    "start": "DEBUG=app:* nodemon server.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rogr/react-socketio.git"
   },
   "author": "Rogelio Alberto",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.13.3",
+    "koa": "^1.1.2",
+    "koa-socket": "^3.2.0",
+    "koa-static": "^1.5.2",
     "lodash": "^3.10.1",
-    "moment": "^2.10.6",
-    "socket.io": "^1.3.7",
     "socket.io-client": "^1.3.7"
   },
   "devDependencies": {
+    "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "babel-runtime": "^6.3.19",
     "bootstrap": "^3.3.6",
     "debug": "^2.2.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
     "eslint-plugin-react": "^3.12.0",
+    "nodemon": "^1.8.1",
     "react": "^0.14.3",
     "react-d3": "^0.4.0",
     "react-dom": "^0.14.3",

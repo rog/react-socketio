@@ -8,6 +8,8 @@
   },
   "ecmaFeatures": {
     "jsx": true,
+    "classes": true,
+    "generators": true,
   },
   "plugins": [
     "react"

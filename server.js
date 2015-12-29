@@ -1,81 +1,33 @@
-/* eslint strict: [0, "global"] */
-'use strict';
-const express = require('express');
-const moment = require('moment');
-const _ = require('lodash');
-const debug = require('debug')('server');
+import Koa from 'koa';
+import _ from 'lodash';
+import debug from 'debug';
+import IO from 'koa-socket';
+import serve from 'koa-static';
+import questions from './api/questions';
 
-const app = express();
-const server = app.listen(3000);
-const io = require('socket.io').listen(server);
+const app = new Koa();
+const io = new IO();
+const port = process.env.PORT || 3000;
+const d = debug('app:server');
 
 const connections = [];
 const audience = [];
-const questions = require('./api/questions');
 
 let currentQuestion = {};
 let speaker = {};
-let results = {
-  a: 0,
-  b: 0,
-  c: 0,
-  d: 0,
-};
+let results = { a: 0, b: 0, c: 0, d: 0 };
 let title = 'Untitled Presentation';
 
-app.use(express.static('./public'));
-app.use(express.static('./node_modules/bootstrap/dist'));
+io.attach(app);
+app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/node_modules/bootstrap/dist'));
 
-io.sockets.on('connection', function onConnect(socket) {
-  socket.once('disconnect', function onDisconnect() {
-    const member = _.findWhere(audience, { id: this.id });
-    if (member) {
-      audience.splice(audience.indexOf(member), 1);
-      io.sockets.emit('audience', audience);
-      debug(`Left: ${member.name} (Total: ${audience.length})`);
-    } else if (this.id === speaker.id) {
-      debug(`${speaker.name} has left. ${title} is over `);
-      speaker = {};
-      title = 'Untitled Presentation';
-      io.sockets.emit('end', { title, speaker: '' });
-    }
-    connections.splice(connections.indexOf(socket), 1);
-    socket.disconnect();
-    debug(`Disconnected: ${connections.length} sockets`);
-  });
-  socket.on('join', function joinEmit(payload) {
-    const newMember = {
-      id: this.id,
-      name: payload.name,
-      type: 'audience',
-    };
-    this.emit('joined', newMember);
-    audience.push(newMember);
-    io.sockets.emit('audience', audience);
-    debug(`Audience Joined: ${payload.name}`);
-  });
-  socket.on('start', function startSpeaker(payload) {
-    speaker.name = payload.name;
-    speaker.id = this.id;
-    speaker.type = 'speaker';
-    title = payload.title;
-    this.emit('joined', speaker);
-    io.sockets.emit('start', { title, speaker: speaker.name });
-    debug(`Presentation started: ${title} by ${speaker.name}`);
-  });
-  socket.on('ask', function askQuestion(question) {
-    currentQuestion = question;
-    results = { a: 0, b: 0, c: 0, d: 0 };
-    io.sockets.emit('ask', currentQuestion);
-    debug(`Question Asked: ${question.q}`);
-  });
-  socket.on('answer', function answerQuestion(payload) {
-    results[payload.choice]++;
-    io.sockets.emit('results', results);
-    debug(`Answer: ${payload.choice}`);
-    debug(results);
-  });
-  socket.emit('welcome', {
+app.server.listen(port, function initServer() {
+  d(`Server listening on port ${port} at ${new Date()}`);
+});
+
+io.on('connection', (ctx) => {
+  ctx.socket.emit('welcome', {
     title,
     audience,
     speaker: speaker.name,
@@ -83,8 +35,60 @@ io.sockets.on('connection', function onConnect(socket) {
     currentQuestion,
     results,
   });
-  connections.push(socket);
-  debug(`Connected: ${connections.length} sockets`);
+  connections.push(ctx.socket);
+  d(`Connected: ${connections.length} sockets`);
 });
 
-debug('Server is running on port 3000 at %s', moment().format());
+io.on('disconnect', (ctx) => {
+  const member = _.findWhere(audience, { id: ctx.socket.id });
+  if (member) {
+    audience.splice(audience.indexOf(member), 1);
+    io.broadcast('audience', audience);
+    d(`Left: ${member.name} (Total: ${audience.length})`);
+  } else if (ctx.socket.id === speaker.id) {
+    debug(`${speaker.name} has left. ${title} is over `);
+    speaker = {};
+    title = 'Untitled Presentation';
+    io.broadcast('end', { title, speaker: '' });
+  }
+  connections.splice(connections.indexOf(ctx.socket), 1);
+  ctx.socket.disconnect();
+  d(`Disconnected: ${connections.length} sockets left`);
+});
+
+
+io.on('start', (ctx, data) => {
+  speaker.name = data.name;
+  speaker.id = ctx.socket.id;
+  speaker.type = 'speaker';
+  title = data.title;
+  ctx.socket.emit('joined', speaker);
+  io.broadcast('start', { title, speaker: speaker.name });
+  d(`Presentation started: ${title} by ${speaker.name}`);
+});
+
+io.on('join', (ctx, data) => {
+  const newMember = {
+    id: ctx.socket.id,
+    name: data.name,
+    type: 'audience',
+  };
+  ctx.socket.emit('joined', newMember);
+  audience.push(newMember);
+  io.broadcast('audience', audience);
+  d(`Audience Joined: ${data.name}`);
+});
+
+io.on('ask', (ctx, question) => {
+  currentQuestion = question;
+  results = { a: 0, b: 0, c: 0, d: 0 };
+  io.broadcast('ask', currentQuestion);
+  d(`Question Asked: ${question.q}`);
+});
+
+io.on('answer', (ctx, data) => {
+  results[data.choice]++;
+  io.broadcast('results', results);
+  d(`Answer: ${data.choice}`);
+  d(results);
+});

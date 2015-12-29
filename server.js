@@ -71,7 +71,7 @@ io.sockets.on('connection', function onConnect(socket) {
   });
   socket.on('answer', function answerQuestion(payload) {
     results[payload.choice]++;
-    io.sockets.emit('resuslts', results);
+    io.sockets.emit('results', results);
     debug(`Answer: ${payload.choice}`);
     debug(results);
   });

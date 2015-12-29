@@ -77,7 +77,7 @@ class App extends React.Component {
     this.setState({ currentQuestion: question });
   }
   updateResults(results) {
-    this.serverState({ results });
+    this.setState({ results });
   }
   render() {
     return (

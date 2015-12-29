@@ -71,6 +71,7 @@ io.sockets.on('connection', function onConnect(socket) {
   });
   socket.on('answer', function answerQuestion(payload) {
     results[payload.choice]++;
+    io.sockets.emit('resuslts', results);
     debug(`Answer: ${payload.choice}`);
     debug(results);
   });
@@ -80,6 +81,7 @@ io.sockets.on('connection', function onConnect(socket) {
     speaker: speaker.name,
     questions,
     currentQuestion,
+    results,
   });
   connections.push(socket);
   debug(`Connected: ${connections.length} sockets`);

@@ -13,13 +13,15 @@ class App extends React.Component {
       audience: [],
       questions: [],
       currentQuestion: {},
+      results: {},
     };
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.updateAudience = this.updateAudience.bind(this);
+    this.updateResults = this.updateResults.bind(this);
     this.joined = this.joined.bind(this);
     this.start = this.start.bind(this);
-    this.updateAudience = this.updateAudience.bind(this);
     this.emit = this.emit.bind(this);
     this.ask = this.ask.bind(this);
   }
@@ -33,6 +35,7 @@ class App extends React.Component {
     this.socket.on('joined', this.joined);
     this.socket.on('audience', this.updateAudience);
     this.socket.on('ask', this.ask);
+    this.socket.on('results', this.updateResults);
   }
   emit(eventName, payload) {
     this.socket.emit(eventName, payload);
@@ -72,6 +75,9 @@ class App extends React.Component {
   ask(question) {
     sessionStorage.removeItem('answer');
     this.setState({ currentQuestion: question });
+  }
+  updateResults(results) {
+    this.serverState({ results });
   }
   render() {
     return (

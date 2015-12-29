@@ -19,6 +19,7 @@ class Join extends React.Component {
         <input ref="name" className="form-control" placeholder="Enter your full name" required />
         <button className="btn btn-primary">Join</button>
         <Link to="/speaker">Join as Speaker</Link>
+        <Link to="/board">Go to the board</Link>
       </form>
     );
   }

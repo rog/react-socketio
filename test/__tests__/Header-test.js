@@ -6,8 +6,8 @@ import TestUtils from 'react-addons-test-utils';
 
 const Header = require('../../components/parts/Header').default;
 
-describe('Header', () => {
-  it('renders the Header if connected', () => {
+describe('<Header />', () => {
+  it('Renders the Header', () => {
     const header = TestUtils.renderIntoDocument(
       <Header title="React Test" status="connected" name="Roger" />
     );

@@ -1,3 +1,5 @@
 language: node_js
+env:
+  - CC=clang CXX=clang++ npm_config_clang=1
 node_js:
   - "4.2.3"

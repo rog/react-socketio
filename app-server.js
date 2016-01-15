@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import _ from 'lodash';
+import findWhere from 'lodash.findwhere';
 import debug from 'debug';
 import IO from 'koa-socket';
 import serve from 'koa-static';
@@ -40,7 +40,7 @@ io.on('connection', (ctx) => {
 });
 
 io.on('disconnect', (ctx) => {
-  const member = _.findWhere(audience, { id: ctx.socket.id });
+  const member = findWhere(audience, { id: ctx.socket.id });
   if (member) {
     audience.splice(audience.indexOf(member), 1);
     io.broadcast('audience', audience);

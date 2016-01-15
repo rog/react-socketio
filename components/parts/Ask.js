@@ -45,11 +45,11 @@ class Ask extends React.Component {
   render() {
     return (
       <div id="currentQuestions">
-        <Display if={this.state.answer !== undefined}>
+        <Display display={this.state.answer !== undefined}>
           <h3>You answered: {this.state.answer}</h3>
           <p>{this.props.question[this.state.answer]}</p>
         </Display>
-        <Display if={this.state.answer === undefined}>
+        <Display display={this.state.answer === undefined}>
           <h2>{this.props.question.q}</h2>
           <div className="row">
             {this.state.choices.map(this.addChoiceButton)}

@@ -8,7 +8,7 @@
     "jest": true,
     "describe": true,
     "it": true,
-    "expect": true,
+    "expect": true
   },
   "ecmaFeatures": {
     "jsx": true,
@@ -19,4 +19,7 @@
     "react"
   ],
   "extends": "airbnb",
+  "rules": {
+    "semi": [2, "always"]
+  }
 }

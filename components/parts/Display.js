@@ -5,12 +5,12 @@ class Display extends React.Component {
     super(props);
   }
   render() {
-    return (this.props.if) ? <div>{this.props.children}</div> : null;
+    return (this.props.display) ? <div>{this.props.children}</div> : null;
   }
 }
 
 Display.propTypes = {
-  if: React.PropTypes.bool,
+  display: React.PropTypes.bool,
   children: React.PropTypes.node,
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "react-socketio",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Example of connecting Socket.io with a React app",
   "main": "app-server.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "Beerware",
   "dependencies": {
     "koa": "^1.1.2",
-    "koa-socket": "^3.2.0",
+    "koa-socket": "^4.0.0",
     "koa-static": "^2.0.0",
     "lodash.findwhere": "^3.1.0",
     "socket.io-client": "^1.3.7"

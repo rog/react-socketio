@@ -32,7 +32,7 @@
     "bootstrap": "^3.3.6",
     "debug": "^2.2.0",
     "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^3.0.0",
+    "eslint-config-airbnb": "^4.0.0",
     "eslint-plugin-react": "^3.12.0",
     "jest-cli": "^0.8.2",
     "nodemon": "^1.8.1",

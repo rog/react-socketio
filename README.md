@@ -1,4 +1,4 @@
-React-Socketio ![dependencies](https://david-dm.org/rogr/react-socketio.svg) ![dev-dependencies](https://david-dm.org/rogr/react-socketio/dev-status.svg) [![Travis Build](https://api.travis-ci.org/rogr/react-socketio.svg)](https://travis-ci.org/rogr/react-socketio)
+React-Socketio [![Dependency Status](https://david-dm.org/rogr/react-socketio.svg)](https://david-dm.org/rogr/react-socketio)  [![devDependency Status](https://david-dm.org/rogr/react-socketio/dev-status.svg)](https://david-dm.org/rogr/react-socketio#info=devDependencies) [![Travis Build](https://api.travis-ci.org/rogr/react-socketio.svg)](https://travis-ci.org/rogr/react-socketio)
 =====
 
 Experiment of using [Socket.io](https://github.com/socketio/socket.io) with [Koa](https://github.com/koajs/koa) and [React](https://github.com/facebook/react).

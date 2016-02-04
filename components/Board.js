@@ -12,7 +12,7 @@ class Board extends React.Component {
       name: 'Answers',
       values: null,
     }];
-    data[0].values = Object.keys(results).map(function getObject(choice) {
+    data[0].values = Object.keys(results).map((choice) => {
       return {
         x: choice,
         y: results[choice],
@@ -23,10 +23,21 @@ class Board extends React.Component {
   render() {
     return (
       <div id="scoreboard">
-        <Display display={this.props.state.status === 'connected' && this.props.state.currentQuestion.q !== undefined}>
-          <BarChart data={this.barGraphData(this.props.state.results)} title={this.props.state.currentQuestion.q} width={window.innerWidth * 0.9} height={window.innerHeight * 0.6} />
+        <Display
+          display={this.props.state.status === 'connected'
+            && this.props.state.currentQuestion.q !== undefined}
+        >
+          <BarChart
+            data={this.barGraphData(this.props.state.results)}
+            title={this.props.state.currentQuestion.q}
+            width={window.innerWidth * 0.9}
+            height={window.innerHeight * 0.6}
+          />
         </Display>
-        <Display display={this.props.state.status === 'connected' && this.props.state.currentQuestion.q === undefined}>
+        <Display
+          display={this.props.state.status === 'connected'
+            && this.props.state.currentQuestion.q === undefined}
+        >
           <h3>Awaiting a Question...</h3>
         </Display>
       </div>

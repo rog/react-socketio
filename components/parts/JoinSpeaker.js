@@ -16,9 +16,13 @@ class JoinSpeaker extends React.Component {
     return (
       <form action="javascript:void(0)" onSubmit={this.start}>
         <label>Full Name</label>
-        <input ref="name" className="form-control" placeholder="Enter your full name" required />
+        <input ref="name" className="form-control"
+          placeholder="Enter your full name" required
+        />
         <label>Presentation Title</label>
-        <input ref="title" className="form-control" placeholder="Enter the title of the presentation" required />
+        <input ref="title" className="form-control"
+          placeholder="Enter the title of the presentation" required
+        />
         <button className="btn btn-primary">Start</button>
       </form>
     );

@@ -14,12 +14,15 @@
     "jsx": true,
     "classes": true,
     "generators": true,
+    "arrowFunctions": true,
   },
   "plugins": [
     "react"
   ],
   "extends": "airbnb",
   "rules": {
-    "semi": [2, "always"]
+    "semi": [2, "always"],
+    "arrow-body-style": [2, "always"],
+    "react/jsx-no-bind": 0,
   }
 }

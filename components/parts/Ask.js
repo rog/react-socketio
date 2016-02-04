@@ -37,7 +37,11 @@ class Ask extends React.Component {
   addChoiceButton(choice, i) {
     const buttonTypes = ['primary', 'success', 'warning', 'danger'];
     return (
-      <button key={i} onClick={this.select.bind(null, choice)} className={'col-xs-12 col-sm-6 btn btn-' + buttonTypes[i]}>
+      <button
+        key={i}
+        onClick={this.select.bind(null, choice)}
+        className={`col-xs-12 col-sm-6 btn btn-${buttonTypes[i]}`}
+      >
         {choice}: {this.props.question[choice]}
       </button>
     );

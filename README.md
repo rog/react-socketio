@@ -3,7 +3,13 @@ React-Socketio [![Dependency Status](https://david-dm.org/rogr/react-socketio.sv
 
 Experiment of using [Socket.io](https://github.com/socketio/socket.io) with [Koa](https://github.com/koajs/koa) and [React](https://github.com/facebook/react).
 
-To install the dependencies of the project:
+Clone the repo and switch into the project folder:
+
+```
+git clone git@github.com:rogr/react-socketio.git && cd react-socketio
+```
+
+And install the dependencies of the project:
 
 ```
 npm install
